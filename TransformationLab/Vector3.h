@@ -5,11 +5,12 @@
 class Vector3
 {
 private:
-	double x;
-	double y;
-	double z;
 
 public:
+	double X;
+	double Y;
+	double Z;
+
 	Vector3();
 	Vector3(double t_x, double t_y, double t_z);
 	Vector3(Vector3& t_v);
