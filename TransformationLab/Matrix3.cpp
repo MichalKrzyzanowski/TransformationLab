@@ -192,3 +192,107 @@ Matrix3 Matrix3::Rotation(int _angle)
 
 	return answer;
 }
+
+Matrix3 Matrix3::Translate(int dx, int dy)
+{
+	Matrix3 answer;
+	answer.A11 = 1;
+	answer.A12 = 0;
+	answer.A13 = 0;
+	answer.A21 = 0;
+	answer.A22 = 1;
+	answer.A23 = 0;
+	answer.A31 = dx;
+	answer.A32 = dy;
+	answer.A33 = 1;
+
+	return answer;
+}
+
+Matrix3 Matrix3::Scale(int dx, int dy)
+{
+	Matrix3 answer;
+	answer.A11 = (double)dx / 100;
+	answer.A12 = 0;
+	answer.A13 = 0;
+	answer.A21 = 0;
+	answer.A22 = (double)dy / 100;
+	answer.A23 = 0;
+	answer.A31 = 0;
+	answer.A32 = 0;
+	answer.A33 = 1;
+
+	return answer;
+}
+
+Matrix3 Matrix3::operator-(Matrix3 M1)
+{
+	return -1 * M1;
+}
+
+Matrix3 Matrix3::RotationX(int _angle)
+{
+	double radians = PI / 180 * _angle;
+	Matrix3 answer;
+	answer.A11 = 1;
+	answer.A12 = 0;
+	answer.A13 = 0;
+	answer.A21 = 0;
+	answer.A22 = Math.Cos(radians);
+	answer.A23 = -Math.Sin(radians);
+	answer.A31 = 0;
+	answer.A32 = Math.Sin(radians);
+	answer.A33 = Math.Cos(radians);
+
+	return answer;
+}
+
+Matrix3 Matrix3::RotationY(int _angle)
+{
+	double radians = PI / 180 * _angle;
+	Matrix3 answer;
+	answer.A11 = Math.Cos(radians);
+	answer.A12 = 0;
+	answer.A13 = Math.Sin(radians);
+	answer.A21 = 0;
+	answer.A22 = 1;
+	answer.A23 = 0;
+	answer.A31 = -Math.Sin(radians);
+	answer.A32 = 0;
+	answer.A33 = Math.Cos(radians);
+
+	return answer;
+}
+
+Matrix3 Matrix3::RotationZ(int _angle)
+{
+	double radians = PI / 180 * _angle;
+	Matrix3 answer;
+	answer.A11 = Math.Cos(radians);
+	answer.A12 = -Math.Sin(radians);
+	answer.A13 = 0;
+	answer.A21 = Math.Sin(radians);
+	answer.A22 = Math.Cos(radians);
+	answer.A23 = 0;
+	answer.A31 = 0;
+	answer.A32 = 0;
+	answer.A33 = 1;
+
+	return answer;
+}
+
+Matrix3 Matrix3::Scale3D(int dx)
+{
+	Matrix3 answer;
+	answer.A11 = (double)dx / 100;
+	answer.A12 = 0;
+	answer.A13 = 0;
+	answer.A21 = 0;
+	answer.A22 = (double)dx / 100;
+	answer.A23 = 0;
+	answer.A31 = 0;
+	answer.A32 = 0;
+	answer.A33 = (double)dx / 100;
+
+	return answer;
+}
