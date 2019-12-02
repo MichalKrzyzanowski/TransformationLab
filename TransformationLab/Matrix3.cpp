@@ -1,4 +1,5 @@
 #include "Matrix3.h"
+#include "Vector3.h"
 
 Matrix3::Matrix3()
 {
@@ -218,9 +219,10 @@ Matrix3 Matrix3::Scale(int dx, int dy) const
 	return answer;
 }
 
-Matrix3 Matrix3::operator-(Matrix3 M1) const
+Matrix3 Matrix3::operator-() const
 {
-	return M1 * -1;
+	Matrix3 answer;
+	return answer * (-1);
 }
 
 Matrix3 Matrix3::RotationX(int _angle) const

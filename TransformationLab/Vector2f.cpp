@@ -48,11 +48,11 @@ Vector2f Vector2f::operator-(Vector2f t_v1) const
 	return { X - t_v1.X, Y - t_v1.Y };
 }
 
-Vector2f Vector2f::operator-(Vector2f t_v) const
+Vector2f Vector2f::operator-() const
 {
 	Vector2f v1;
-	v1.X = -t_v.X;
-	v1.Y = -t_v.Y;
+	v1.X = -X;
+	v1.Y = -Y;
 
 	return v1;
 }

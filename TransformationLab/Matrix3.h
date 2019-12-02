@@ -1,12 +1,23 @@
 #include <SFML/Graphics.hpp>
-#include "Vector3.h"
-
 #pragma once
 
+class Vector3;
 
 class Matrix3
 {
 public:
+	double A11;
+	double A12;
+	double A13;
+
+	double A21;
+	double A22;
+	double A23;
+
+	double A31;
+	double A32;
+	double A33;
+
 	Matrix3();
 	Matrix3(Vector3 Row1, Vector3 Row2, Vector3 Row3);
 	Matrix3(double _A11, double _A12, double _A13,
@@ -33,7 +44,7 @@ public:
 	Matrix3 Translate(int dx, int dy) const;
 	Matrix3 Scale(int dx, int dy) const;
 
-	Matrix3 operator -(Matrix3 M1) const;
+	Matrix3 operator -() const;
 
 	Matrix3 RotationX(int _angle) const;
 	Matrix3 RotationY(int _angle) const;
@@ -43,17 +54,7 @@ public:
 
 
 private:
-	double A11;
-	double A12;
-	double A13;
-
-	double A21;
-	double A22;
-	double A23;
-
-	double A31;
-	double A32;
-	double A33;
+	
 
 	const double PI{ 3.14159265359 };
 };

@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include "Matrix3.h"
 #pragma once
-
+#include "Matrix3.h"
 
 class Vector3
 {
@@ -27,7 +26,7 @@ public:
 	Vector3 operator *(double k) const;
 	Vector3 operator *(float k) const;
 	Vector3 operator *(int k) const;
-	Vector3 Vector3::operator*(Matrix3 M1) const
+	Vector3 operator*(Matrix3 M1) const;
 	Vector3 operator ^(Vector3 V1) const;
 
 	std::string ToString();
