@@ -25,8 +25,6 @@ public:
 			double _A31, double _A32, double _A33);
 
 	Vector3 operator *(Vector3 V1) const;
-	//Vector3 operator *(Vector3 V1) const;
-
 
 	Matrix3 Transpose() const;
 
@@ -52,7 +50,7 @@ public:
 
 	Matrix3 Scale3D(int dx) const;
 
-
+	std::string toString();
 private:
 	
 

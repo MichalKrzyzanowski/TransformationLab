@@ -291,3 +291,10 @@ Matrix3 Matrix3::Scale3D(int dx) const
 
 	return answer;
 }
+
+std::string Matrix3::toString()
+{
+	return { "(" + std::to_string(A11) + "," + std::to_string(A12) + std::to_string(A13) + ")\n" +
+			"(" + std::to_string(A21) + "," + std::to_string(A22) + std::to_string(A23) + ")\n" +
+			"(" + std::to_string(A31) + "," + std::to_string(A32) + std::to_string(A33) + ")\n" };
+}
