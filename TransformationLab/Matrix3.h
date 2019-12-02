@@ -10,36 +10,36 @@ public:
 	Matrix3();
 	Matrix3(Vector3 Row1, Vector3 Row2, Vector3 Row3);
 	Matrix3(double _A11, double _A12, double _A13,
-		double _A21, double _A22, double _A23,
-		double _A31, double _A32, double _A33);
+			double _A21, double _A22, double _A23,
+			double _A31, double _A32, double _A33);
 
-	static Vector3 operator *(Matrix3 M1, Vector3 V1);
-	static Vector3 operator *(Vector3 V1, Matrix3 M1);
-
-
-	static Matrix3 Transpose(Matrix3 M1);
-
-	static Matrix3 operator +(Matrix3 M1, Matrix3 M2);
-	static Matrix3 operator -(Matrix3 M1, Matrix3 M2);
-	static Matrix3 operator *(double x, Matrix3 M1);
-	static Matrix3 operator *(Matrix3 M1, Matrix3 M2); // fix this!!
+	Vector3 operator *(Vector3 V1) const;
+	//Vector3 operator *(Vector3 V1) const;
 
 
-	static double Determinant(Matrix3 M1);
-	Vector3 Row(int i);
-	Vector3 Column(int i);
-	static Matrix3 Inverse(Matrix3 M1);
-	static Matrix3 Rotation(int _angle);
-	static Matrix3 Translate(int dx, int dy);
-	static Matrix3 Scale(int dx, int dy);
+	Matrix3 Transpose() const;
 
-	static Matrix3 operator -(Matrix3 M1);
+	Matrix3 operator +(Matrix3 M2) const;
+	Matrix3 operator -(Matrix3 M2) const;
+	Matrix3 operator *(double x) const;
+	Matrix3 operator *(Matrix3 M2) const;
 
-	static Matrix3 RotationX(int _angle);
-	static Matrix3 RotationY(int _angle);
-	static Matrix3 RotationZ(int _angle);
 
-	static Matrix3 Scale3D(int dx);
+	double Determinant(Matrix3 M1) const;
+	Vector3 Row(int i) const;
+	Vector3 Column(int i) const;
+	Matrix3 Inverse(Matrix3 M1) const;
+	Matrix3 Rotation(int _angle) const;
+	Matrix3 Translate(int dx, int dy) const;
+	Matrix3 Scale(int dx, int dy) const;
+
+	Matrix3 operator -(Matrix3 M1) const;
+
+	Matrix3 RotationX(int _angle) const;
+	Matrix3 RotationY(int _angle) const;
+	Matrix3 RotationZ(int _angle) const;
+
+	Matrix3 Scale3D(int dx) const;
 
 
 private:

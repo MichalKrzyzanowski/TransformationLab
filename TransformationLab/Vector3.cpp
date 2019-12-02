@@ -14,12 +14,6 @@ Vector3::Vector3(double t_x, double t_y, double t_z)
 	Z = t_z;
 }
 
-Vector3::Vector3(Vector3& t_v)
-{
-	X = t_v.X;
-	Y = t_v.Y;
-	Z = t_v.Z;
-}
 
 double Vector3::Length()
 {
@@ -42,49 +36,56 @@ void Vector3::Normalise()
 	}
 }
 
-Vector3 Vector3::operator+(Vector3 t_v1, Vector3 t_v2)
+Vector3 Vector3::operator+(Vector3 t_v1) const
 {
-	return { t_v1.X + t_v2.X, t_v1.Y + t_v2.Y, t_v1.Z + t_v2.Z };
+	return { X + t_v1.X, Y + t_v1.Y, Z + t_v1.Z };
 }
 
-Vector3 Vector3::operator-(Vector3 t_v1, Vector3 t_v2)
+Vector3 Vector3::operator-(Vector3 t_v1) const
 {
-	return { t_v1.X - t_v2.X, t_v1.Y - t_v2.Y, t_v1.Z - t_v2.Z };
+	return { X - t_v1.X, Y - t_v1.Y, Z - t_v1.Z };
 }
 
-Vector3 Vector3::operator-(Vector3 t_v)
+Vector3 Vector3::operator-() const
 {
 	Vector3 v1;
-	v1.X = -t_v.X;
-	v1.Y = -t_v.Y;
-	v1.Z = -t_v.Z;
+	v1.X = -X;
+	v1.Y = -Y;
+	v1.Z = -Z;
 
 	return v1;
 }
 
-double Vector3::operator*(Vector3 t_v1, Vector3 t_v2)
+double Vector3::operator*(Vector3 t_v1) const
 {
-	return (t_v1.X * t_v2.X + t_v1.Y * t_v2.Y + t_v1.Z * t_v2.Z);
+	return (X * t_v1.X + Y * t_v1.Y + Z * t_v1.Z);
 }
 
-Vector3 Vector3::operator*(double k, Vector3 t_v1)
+Vector3 Vector3::operator*(double k) const
 {
-	return { t_v1.X * (float)k, t_v1.Y * (float)k, t_v1.Z * (float)k };
+	return { X * (float)k, Y * (float)k, Z * (float)k };
 }
 
-Vector3 Vector3::operator*(float k, Vector3 t_v1)
+Vector3 Vector3::operator*(float k) const
 {
-	return { t_v1.X * k, t_v1.Y * k, t_v1.Z * k };
+	return { X * k, Y * k, Z * k };
 }
 
-Vector3 Vector3::operator*(int k, Vector3 t_v1)
+Vector3 Vector3::operator*(int k) const
 {
-	return { t_v1.X * k, t_v1.Y * k, t_v1.Z * k };
+	return { X * k, Y * k, Z * k };
 }
 
-Vector3 Vector3::operator^(Vector3 t_v1, Vector3 t_v2)
+Vector3 Vector3::operator*(Matrix3 M1) const
 {
-	return { t_v1.Y * t_v2.Z - t_v1.Z * t_v2.Y, t_v1.Z * t_v2.X - t_v1.X * t_v2.Z, t_v1.X * t_v2.Y - t_v1.Y * t_v2.X };
+	return { M1.A11 * X + M1.A21 * Y + M1.A31 * Z,
+								M1.A12 * X + M1.A22 * Y + M1.A32 * Z,
+								M1.A13 * X + M1.A23 * Y + M1.A33 * Z };
+}
+
+Vector3 Vector3::operator^(Vector3 t_v1) const
+{
+	return { Y * t_v1.Z - Z * t_v1.Y, Z * t_v1.X - X * t_v1.Z, X * t_v1.Y - Y * t_v1.X };
 }
 
 std::string Vector3::ToString()

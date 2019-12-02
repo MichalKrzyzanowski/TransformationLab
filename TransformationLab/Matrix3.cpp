@@ -39,84 +39,77 @@ Matrix3::Matrix3(double _A11, double _A12, double _A13, double _A21, double _A22
 	A33 = _A33;
 }
 
-Vector3 Matrix3::operator*(Matrix3 M1, Vector3 V1)
+Vector3 Matrix3::operator*(Vector3 V1) const
 {
-	return { M1.A11 * V1.X + M1.A12 * V1.Y + M1.A13 * V1.Z,
-								M1.A21 * V1.X + M1.A22 * V1.Y + M1.A23 * V1.Z,
-								M1.A31 * V1.X + M1.A32 * V1.Y + M1.A33 * V1.Z };
+	return { A11 * V1.X + A12 * V1.Y + A13 * V1.Z,
+								A21 * V1.X + A22 * V1.Y + A23 * V1.Z,
+								A31 * V1.X + A32 * V1.Y + A33 * V1.Z };
 }
 
-Vector3 Matrix3::operator*(Vector3 V1, Matrix3 M1)
+Matrix3 Matrix3::Transpose() const
 {
-	return { M1.A11 * V1.X + M1.A21 * V1.Y + M1.A31 * V1.Z,
-								M1.A12 * V1.X + M1.A22 * V1.Y + M1.A32 * V1.Z,
-								M1.A13 * V1.X + M1.A23 * V1.Y + M1.A33 * V1.Z };
+	return { A11, A21, A31,
+				A12, A22, A32,
+				A13, A23, A33 };
 }
 
-Matrix3 Matrix3::Transpose(Matrix3 M1)
+Matrix3 Matrix3::operator+(Matrix3 M2) const
 {
-	return { M1.A11, M1.A21, M1.A31,
-				M1.A12, M1.A22, M1.A32,
-				M1.A13, M1.A23, M1.A33 };
+	return { A11 + M2.A11, A12 + M2.A12, A13 + M2.A13,
+				A21 + M2.A21, A22 + M2.A22, A23 + M2.A23,
+				A31 + M2.A31, A32 + M2.A32, A33 + M2.A33 };
 }
 
-Matrix3 Matrix3::operator+(Matrix3 M1, Matrix3 M2)
+Matrix3 Matrix3::operator-(Matrix3 M2) const
 {
-	return { M1.A11 + M2.A11, M1.A12 + M2.A12, M1.A13 + M2.A13,
-				M1.A21 + M2.A21, M1.A22 + M2.A22, M1.A23 + M2.A23,
-				M1.A31 + M2.A31, M1.A32 + M2.A32, M1.A33 + M2.A33 };
+	return { A11 - M2.A11, A12 - M2.A12, A13 - M2.A13,
+				A21 - M2.A21, A22 - M2.A22, A23 - M2.A23,
+				A31 - M2.A31, A32 - M2.A32, A33 - M2.A33 };
 }
 
-Matrix3 Matrix3::operator-(Matrix3 M1, Matrix3 M2)
-{
-	return { M1.A11 - M2.A11, M1.A12 - M2.A12, M1.A13 - M2.A13,
-				M1.A21 - M2.A21, M1.A22 - M2.A22, M1.A23 - M2.A23,
-				M1.A31 - M2.A31, M1.A32 - M2.A32, M1.A33 - M2.A33 };
-}
-
-Matrix3 Matrix3::operator*(double x, Matrix3 M1)
+Matrix3 Matrix3::operator*(double x) const
 {
 	Matrix3 answer;
-	answer.A11 = M1.A11 * x;
-	answer.A12 = M1.A12 * x;
-	answer.A13 = M1.A13 * x;
+	answer.A11 = A11 * x;
+	answer.A12 = A12 * x;
+	answer.A13 = A13 * x;
 
-	answer.A21 = M1.A21 * x;
-	answer.A22 = M1.A22 * x;
-	answer.A23 = M1.A23 * x;
+	answer.A21 = A21 * x;
+	answer.A22 = A22 * x;
+	answer.A23 = A23 * x;
 
-	answer.A31 = M1.A31 * x;
-	answer.A32 = M1.A32 * x;
-	answer.A33 = M1.A33 * x;
+	answer.A31 = A31 * x;
+	answer.A32 = A32 * x;
+	answer.A33 = A33 * x;
 
 	return answer;
 }
 
-Matrix3 Matrix3::operator*(Matrix3 M1, Matrix3 M2)
+Matrix3 Matrix3::operator*(Matrix3 M2) const
 {
 	Matrix3 answer;
-	answer.A11 = M1.Row(0) * M2.Column(0);
-	answer.A12 = M1.Row(0) * M2.Column(1);
-	answer.A13 = M1.Row(0) * M2.Column(2);
+	answer.A11 = Row(0) * M2.Column(0);
+	answer.A12 = Row(0) * M2.Column(1);
+	answer.A13 = Row(0) * M2.Column(2);
 
-	answer.A21 = M1.Row(1) * M2.Column(0);
-	answer.A22 = M1.Row(1) * M2.Column(1);
-	answer.A23 = M1.Row(1) * M2.Column(2);
+	answer.A21 = Row(1) * M2.Column(0);
+	answer.A22 = Row(1) * M2.Column(1);
+	answer.A23 = Row(1) * M2.Column(2);
 
-	answer.A31 = M1.Row(2) * M2.Column(0);
-	answer.A32 = M1.Row(2) * M2.Column(1);
-	answer.A33 = M1.Row(2) * M2.Column(2);
+	answer.A31 = Row(2) * M2.Column(0);
+	answer.A32 = Row(2) * M2.Column(1);
+	answer.A33 = Row(2) * M2.Column(2);
 
 
 	return answer;
 }
 
-double Matrix3::Determinant(Matrix3 M1)
+double Matrix3::Determinant(Matrix3 M1) const
 {
 	return M1.A11 * M1.A22 * M1.A33 - M1.A11 * M1.A32 * M1.A23 + M1.A21 * M1.A32 * M1.A13 - M1.A31 * M1.A22 * M1.A13 + M1.A31 * M1.A12 * M1.A23 - M1.A21 * M1.A12 * M1.A33;
 }
 
-Vector3 Matrix3::Row(int i)
+Vector3 Matrix3::Row(int i) const
 {
 	// a method to return as Row as vector3 0 == first row, default == last row
 	switch (i)
@@ -131,7 +124,7 @@ Vector3 Matrix3::Row(int i)
 	}
 }
 
-Vector3 Matrix3::Column(int i)
+Vector3 Matrix3::Column(int i) const
 {
 	// a method to return as column as vector3 0 == first column, default == last column
 	switch (i)
@@ -146,7 +139,7 @@ Vector3 Matrix3::Column(int i)
 	}
 }
 
-Matrix3 Matrix3::Inverse(Matrix3 M1)
+Matrix3 Matrix3::Inverse(Matrix3 M1) const
 {
 	// method to return the inverse of a matrix if exists else zero vector
 	double det = Determinant(M1);
@@ -176,7 +169,7 @@ Matrix3 Matrix3::Inverse(Matrix3 M1)
 	}
 }
 
-Matrix3 Matrix3::Rotation(int _angle)
+Matrix3 Matrix3::Rotation(int _angle) const
 {
 	double radians = PI / 180 * _angle;
 	Matrix3 answer;
@@ -193,7 +186,7 @@ Matrix3 Matrix3::Rotation(int _angle)
 	return answer;
 }
 
-Matrix3 Matrix3::Translate(int dx, int dy)
+Matrix3 Matrix3::Translate(int dx, int dy) const
 {
 	Matrix3 answer;
 	answer.A11 = 1;
@@ -209,7 +202,7 @@ Matrix3 Matrix3::Translate(int dx, int dy)
 	return answer;
 }
 
-Matrix3 Matrix3::Scale(int dx, int dy)
+Matrix3 Matrix3::Scale(int dx, int dy) const
 {
 	Matrix3 answer;
 	answer.A11 = (double)dx / 100;
@@ -225,12 +218,12 @@ Matrix3 Matrix3::Scale(int dx, int dy)
 	return answer;
 }
 
-Matrix3 Matrix3::operator-(Matrix3 M1)
+Matrix3 Matrix3::operator-(Matrix3 M1) const
 {
-	return -1 * M1;
+	return M1 * -1;
 }
 
-Matrix3 Matrix3::RotationX(int _angle)
+Matrix3 Matrix3::RotationX(int _angle) const
 {
 	double radians = PI / 180 * _angle;
 	Matrix3 answer;
@@ -238,41 +231,41 @@ Matrix3 Matrix3::RotationX(int _angle)
 	answer.A12 = 0;
 	answer.A13 = 0;
 	answer.A21 = 0;
-	answer.A22 = Math.Cos(radians);
-	answer.A23 = -Math.Sin(radians);
+	answer.A22 = cos(radians);
+	answer.A23 = -sin(radians);
 	answer.A31 = 0;
-	answer.A32 = Math.Sin(radians);
-	answer.A33 = Math.Cos(radians);
+	answer.A32 = sin(radians);
+	answer.A33 = cos(radians);
 
 	return answer;
 }
 
-Matrix3 Matrix3::RotationY(int _angle)
+Matrix3 Matrix3::RotationY(int _angle) const
 {
 	double radians = PI / 180 * _angle;
 	Matrix3 answer;
-	answer.A11 = Math.Cos(radians);
+	answer.A11 = cos(radians);
 	answer.A12 = 0;
-	answer.A13 = Math.Sin(radians);
+	answer.A13 = sin(radians);
 	answer.A21 = 0;
 	answer.A22 = 1;
 	answer.A23 = 0;
-	answer.A31 = -Math.Sin(radians);
+	answer.A31 = -sin(radians);
 	answer.A32 = 0;
-	answer.A33 = Math.Cos(radians);
+	answer.A33 = cos(radians);
 
 	return answer;
 }
 
-Matrix3 Matrix3::RotationZ(int _angle)
+Matrix3 Matrix3::RotationZ(int _angle) const
 {
 	double radians = PI / 180 * _angle;
 	Matrix3 answer;
-	answer.A11 = Math.Cos(radians);
-	answer.A12 = -Math.Sin(radians);
+	answer.A11 = cos(radians);
+	answer.A12 = -sin(radians);
 	answer.A13 = 0;
-	answer.A21 = Math.Sin(radians);
-	answer.A22 = Math.Cos(radians);
+	answer.A21 = sin(radians);
+	answer.A22 = cos(radians);
 	answer.A23 = 0;
 	answer.A31 = 0;
 	answer.A32 = 0;
@@ -281,7 +274,7 @@ Matrix3 Matrix3::RotationZ(int _angle)
 	return answer;
 }
 
-Matrix3 Matrix3::Scale3D(int dx)
+Matrix3 Matrix3::Scale3D(int dx) const
 {
 	Matrix3 answer;
 	answer.A11 = (double)dx / 100;

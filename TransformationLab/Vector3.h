@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "Matrix3.h"
 #pragma once
 
 
@@ -13,21 +14,21 @@ public:
 
 	Vector3();
 	Vector3(double t_x, double t_y, double t_z);
-	Vector3(Vector3& t_v);
 
 	double Length();
 	double LengthSquared();
 	void Normalise();
 
-	static Vector3 operator +(Vector3 t_v1, Vector3 t_v2);
-	static Vector3 operator -(Vector3 t_v1, Vector3 t_v2);
-	static Vector3 operator -(Vector3 t_v);
+	Vector3 operator +(Vector3 t_v1) const;
+	Vector3 operator -() const;
+	Vector3 operator -(Vector3 t_v) const;
 
-	static double operator *(Vector3 t_v1, Vector3 t_v2);
-	static Vector3 operator *(double k, Vector3 V1);
-	static Vector3 operator *(float k, Vector3 V1);
-	static Vector3 operator *(int k, Vector3 V1);
-	static Vector3 operator ^(Vector3 V1, Vector3 V2);
+	double operator *(Vector3 t_v1) const;
+	Vector3 operator *(double k) const;
+	Vector3 operator *(float k) const;
+	Vector3 operator *(int k) const;
+	Vector3 Vector3::operator*(Matrix3 M1) const
+	Vector3 operator ^(Vector3 V1) const;
 
 	std::string ToString();
 
