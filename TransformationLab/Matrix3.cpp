@@ -105,9 +105,14 @@ Matrix3 Matrix3::operator*(Matrix3 M2) const
 	return answer;
 }
 
-double Matrix3::Determinant(Matrix3 M1) const
+//Matrix3 Matrix3::operator=(Matrix3 M2) const
+//{
+//	return M2;
+//}
+
+double Matrix3::Determinant() const
 {
-	return M1.A11 * M1.A22 * M1.A33 - M1.A11 * M1.A32 * M1.A23 + M1.A21 * M1.A32 * M1.A13 - M1.A31 * M1.A22 * M1.A13 + M1.A31 * M1.A12 * M1.A23 - M1.A21 * M1.A12 * M1.A33;
+	return A11 * A22 * A33 - A11 * A32 * A23 + A21 * A32 * A13 - A31 * A22 * A13 + A31 * A12 * A23 - A21 * A12 * A33;
 }
 
 Vector3 Matrix3::Row(int i) const
@@ -143,7 +148,7 @@ Vector3 Matrix3::Column(int i) const
 Matrix3 Matrix3::Inverse(Matrix3 M1) const
 {
 	// method to return the inverse of a matrix if exists else zero vector
-	double det = Determinant(M1);
+	double det = Determinant();
 	if (det == 0)
 	{
 		return Matrix3();
@@ -221,7 +226,7 @@ Matrix3 Matrix3::Scale(int dx, int dy) const
 
 Matrix3 Matrix3::operator-() const
 {
-	Matrix3 answer;
+	Matrix3 answer{ A11, A12, A13, A21, A22, A23, A31, A32, A33 };
 	return answer * (-1);
 }
 
@@ -294,7 +299,7 @@ Matrix3 Matrix3::Scale3D(int dx) const
 
 std::string Matrix3::toString()
 {
-	return { "(" + std::to_string(A11) + "," + std::to_string(A12) + std::to_string(A13) + ")\n" +
-			"(" + std::to_string(A21) + "," + std::to_string(A22) + std::to_string(A23) + ")\n" +
-			"(" + std::to_string(A31) + "," + std::to_string(A32) + std::to_string(A33) + ")\n" };
+	return { "(" + std::to_string(A11) + "," + std::to_string(A12) + "," + std::to_string(A13) + ")\n" +
+			"(" + std::to_string(A21) + "," + std::to_string(A22) + "," + std::to_string(A23) + ")\n" +
+			"(" + std::to_string(A31) + "," + std::to_string(A32) + "," + std::to_string(A33) + ")\n" };
 }

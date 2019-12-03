@@ -8,8 +8,10 @@ int main()
 	Vector3 vector3{};
 	Vector3 vectorAnswer{};
 	double doubleAnswer{ 0 };
-	Matrix3 matrix{};
+	Matrix3 matrixDefault{};
 	Matrix3 matrixAnswer{};
+	Matrix3 stuff{ 1,1,1,2,2,2,3,3,3 };
+	float angle{ 90 };
 
 
 	/// <summary>
@@ -42,7 +44,7 @@ int main()
 	// FIX THIS!!!
 	std::cout << "operator - (negate)\n";
 	vector3 = Vector3(1, 2, 3);
-	vectorAnswer = vector3;
+	vectorAnswer = -vector3;
 	std::cout << vectorAnswer.ToString() << "\n\n";
 
 	std::cout << "operator -\n";
@@ -86,101 +88,105 @@ int main()
 	/// </summary>
 	/// <returns></returns>
 	std::cout << "default constructor\n";
-	std::cout << matrix.toString() << "\n\n";
+	std::cout << matrixDefault.toString() << "\n\n";
 
 	std::cout << "default constructor vector3\n";
-	matrix = Matrix3{ Vector3{ 1,1,1 } , Vector3{2, 2, 2}, Vector3{3, 3, 3} };
-	std::cout << matrix.toString() << "\n\n";
+	Matrix3 matrixA = Matrix3{ Vector3{ 1,1,1 } , Vector3{2, 2, 2}, Vector3{3, 3, 3} };
+	std::cout << matrixA.toString() << "\n\n";
 
 	std::cout << "default constructor doubles\n";
-	matrix = Matrix3{ 1.0,1.0,1.0,2.0,2.0,2.0,3.0,3.0,3.0 };
-	std::cout << matrix.toString() << "\n\n";
+	Matrix3 matrixB = Matrix3{ 1.0,1.0,1.0,2.0,2.0,2.0,3.0,3.0,3.0 };
+	std::cout << matrixB.toString() << "\n\n";
 
 	std::cout << "operator * matrix by vector3\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix * Vector3{ 4,3,6 };
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixC = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	vectorAnswer = matrixC * Vector3{ 4,3,6 };
+	std::cout << vectorAnswer.ToString() << "\n\n";
 
 	std::cout << "transpose\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrix.Transpose();
-	std::cout << matrix.toString() << "\n\n";
+	Matrix3 matrixD = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	matrixD.Transpose();
+	std::cout << matrixD.toString() << "\n\n";
 
 	std::cout << "operator + \n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix + Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixE = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnsE = matrixE + Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
+	std::cout << matrixAnsE.toString() << "\n\n";
+
+	//(matrix + matrixAnswer).toString();
 
 	std::cout << "operator -\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix - Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixF = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerF = matrixF - Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
+	std::cout << matrixAnswerF.toString() << "\n\n";
 
 	std::cout << "operator * double\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix * 3.0;
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixG= Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerG = matrixG * 3.0;
+	std::cout << matrixAnswerG.toString() << "\n\n";
 
 	std::cout << "operator * matrix by matrix\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix * Matrix3{ 2.0, 2.0, 2.0, 3.0,3.0,3.0,4.0,4.0,4.0 };
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixH = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerH = matrixH * Matrix3{ 2.0, 2.0, 2.0, 3.0,3.0,3.0,4.0,4.0,4.0 };
+	std::cout << matrixAnswerH.toString() << "\n\n";
 
 	// FIX THIS!!
+
+
 	std::cout << "operator -\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix;
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixI = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerI = -matrixI;
+	std::cout << matrixAnswerI.toString() << "\n\n";
 
 	std::cout << "determinant\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	doubleAnswer = matrix.Determinant(Matrix3{ 2.0, 2.0, 2.0, 3.0,3.0,3.0,4.0,4.0,4.0 });
+	Matrix3 matrixJ = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	doubleAnswer = matrixJ.Determinant();
 	std::cout << doubleAnswer << "\n\n";
 
 	std::cout << "row\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	vectorAnswer = matrix.Column(0);
+	Matrix3 matrixK = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	vectorAnswer = matrixK.Column(0);
 	std::cout << vectorAnswer.ToString() << "\n\n";
 
 	std::cout << "column\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	vectorAnswer = matrix.Column(1);
+	Matrix3 matrixL = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	vectorAnswer = matrixL.Column(1);
 	std::cout << vectorAnswer.ToString() << "\n\n";
 
 	std::cout << "inverse\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix.Inverse(Matrix3{ 2.0, 2.0, 2.0, 3.0,3.0,3.0,4.0,4.0,4.0 });;
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixM = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerM = matrixM.Inverse(matrixM);
+	std::cout << matrixAnswerM.toString() << "\n\n";
 
 	std::cout << "rotation\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix.Rotation(25);
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixN = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerN = matrixN.Rotation(25);
+	std::cout << matrixAnswerN.toString() << "\n\n";
 
 	std::cout << "translate\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix.Translate(2,2);
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixO = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerO = matrixO.Translate(2,2);
+	std::cout << matrixAnswerO.toString() << "\n\n";
 
 	std::cout << "scale\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix.Scale(2,2);
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixP = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerP = matrixP.Scale(2,2);
+	std::cout << matrixAnswerP.toString() << "\n\n";
 
 	std::cout << "rotationX\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix.RotationX(25);
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixQ = Matrix3{ 5,3,9,7,5,2,6,4,9 };
+	Matrix3 matrixAnswerQ = matrixQ.RotationX(angle);
+	std::cout << matrixAnswerQ.toString() << "\n\n";
 
 	std::cout << "rotationY\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix.RotationY(25);
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixR = Matrix3{ 5,3,9,7,5,2,6,4,9 };
+	Matrix3 matrixAnswerR = matrixR.RotationY(angle);
+	std::cout << matrixAnswerR.toString() << "\n\n";
 
 	std::cout << "rotationZ\n";
-	matrix = Matrix3{ 1.0, 1.0, 1.0, 2.0,2.0,2.0,3.0,3.0,3.0 };
-	matrixAnswer = matrix.RotationZ(25);
-	std::cout << matrixAnswer.toString() << "\n\n";
+	Matrix3 matrixS = Matrix3{ 5,3,9,7,5,2,6,4,9 };
+	Matrix3 matrixAnswerS = matrixS.RotationZ(angle);
+	std::cout << matrixAnswerS.toString() << "\n\n";
 
 
 	return 0;

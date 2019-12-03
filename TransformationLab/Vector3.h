@@ -2,6 +2,7 @@
 #pragma once
 #include "Matrix3.h"
 
+
 class Vector3
 {
 private:

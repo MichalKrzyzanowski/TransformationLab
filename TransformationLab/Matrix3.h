@@ -1,5 +1,8 @@
-#include <SFML/Graphics.hpp>
 #pragma once
+
+
+#include <string>
+#include <SFML/Graphics.hpp>
 
 class Vector3;
 
@@ -32,9 +35,10 @@ public:
 	Matrix3 operator -(Matrix3 M2) const;
 	Matrix3 operator *(double x) const;
 	Matrix3 operator *(Matrix3 M2) const;
+	//Matrix3 operator=(Matrix3 M2) const;
 
 
-	double Determinant(Matrix3 M1) const;
+	double Determinant() const;
 	Vector3 Row(int i) const;
 	Vector3 Column(int i) const;
 	Matrix3 Inverse(Matrix3 M1) const;
