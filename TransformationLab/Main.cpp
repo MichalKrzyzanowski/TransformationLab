@@ -160,17 +160,17 @@ int main()
 
 	std::cout << "rotation\n";
 	Matrix3 matrixN = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
-	Matrix3 matrixAnswerN = matrixN.Rotation(25);
+	Matrix3 matrixAnswerN = matrixN.Rotation(angle);
 	std::cout << matrixAnswerN.toString() << "\n\n";
 
 	std::cout << "translate\n";
 	Matrix3 matrixO = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
-	Matrix3 matrixAnswerO = matrixO.Translate(2,2);
+	Matrix3 matrixAnswerO = matrixO.Translate(5,6);
 	std::cout << matrixAnswerO.toString() << "\n\n";
 
 	std::cout << "scale\n";
 	Matrix3 matrixP = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
-	Matrix3 matrixAnswerP = matrixP.Scale(2,2);
+	Matrix3 matrixAnswerP = matrixP.Scale(5,6);
 	std::cout << matrixAnswerP.toString() << "\n\n";
 
 	std::cout << "rotationX\n";
@@ -187,6 +187,11 @@ int main()
 	Matrix3 matrixS = Matrix3{ 5,3,9,7,5,2,6,4,9 };
 	Matrix3 matrixAnswerS = matrixS.RotationZ(angle);
 	std::cout << matrixAnswerS.toString() << "\n\n";
+
+	std::cout << "scale3D\n";
+	Matrix3 matrixT = Matrix3{ 4.0, 4.0, 4.0, 4.0,2.0,5.0,2.0,5.0,-3.0 };
+	Matrix3 matrixAnswerT = matrixT.Scale3D(5);
+	std::cout << matrixAnswerT.toString() << "\n\n";
 
 
 	return 0;
