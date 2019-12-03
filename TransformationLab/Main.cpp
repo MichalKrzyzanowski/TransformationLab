@@ -194,5 +194,29 @@ int main()
 	std::cout << matrixAnswerT.toString() << "\n\n";
 
 
+	/// <summary>
+	/// specific tests:
+	/// - length of vector1
+	/// - length sqaured of vector2
+	/// - rotationZ of vector3 by 23.21
+	/// </summary>
+	/// <returns></returns>
+	Vector3 vector1{ 0, 2, -5 };
+	Vector3 vector2{ -2, -2, -5 };
+	Vector3 vector3a{ 2, -2, -5 };
+		
+	// matrix rotationz 23.21
+
+	std::cout << "rotationZ test\n";
+	Matrix3 matrix1 = Matrix3{ 1,0,0,0,1,0,0,0,1 };
+	Vector3 vectorTestAns = matrix1.RotationZ(23.21) * vector3a;
+	std::cout << vectorTestAns.ToString() << "\n\n";
+
+	std::cout << "length test\n";
+	std::cout << vector1.Length() << "\n\n";
+
+	std::cout << "length squared test\n";
+	std::cout << vector2.LengthSquared() << "\n\n";
+
 	return 0;
 }
